@@ -1,0 +1,24 @@
+<h2><%= @list.name %></h2>
+
+<p><strong>Reviews</strong></p>
+<ul class="list-group">
+  <% @list.name.each do |review| %>
+    <li class="list-group-item"><%= review.content %></li>
+  <% end %>
+</ul>
+<br>
+
+<%= simple_form_for [@list] do |f| %>
+  <%= f.input :rating %>
+  <%= f.input :content %>
+  <%= f.submit %>
+<% end %>
+
+<ul>
+  <li><%= link_to "Back to list", lists_path%></li>
+  <li><%= link_to "Edit", edit_list_path%></li>
+  <li><%= link_to "Delete",
+    list_path(@list),
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+  %></li>
+</ul>
